@@ -40,17 +40,17 @@ function sendRequest(name, phone, address, goods, sum) {
     let countOfGoods = goods.length;
    
     for (let i = 0; i < countOfGoods; i += 1) {
-        data.goods.push(goods[i].title);
+        const g = {title: countOfGoods, count: countOfGoods };
+        data.goods.push(goods[i].title + ' , ' + goods[i].count);      ;
         
     }
-    const gds = [data.goods];
-    data.goods = JSON.stringify([gds]);
-    data.order.address = JSON.stringify({address});
+ 
+    data.order.address = 'Ул.' + address.street + ' , дом ' + address.house + ' , ' + address.entrance + ' подъезд, ' + address.floor + ' этаж, кв ' + address.flat;
     data.order.sum =  sum;
 
     data.client = name + ' ' + phone;
 
-    let jsonData = JSON.stringify({data: data});
+    let jsonData = JSON.stringify({data});
     
     return jsonData;
 }
